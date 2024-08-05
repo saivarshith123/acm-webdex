@@ -1,0 +1,44 @@
+@keyframes slideup {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.app-container {
+    animation: slideup 0.7s ease-out;
+}
+
+.modal-container, .modal-container-method {
+    animation: slideup 0.7s ease-out;
+}
+
+header {
+    background-color: white;
+    z-index: 999;
+}
+
+@media (min-width: 1120px) {
+    header {
+        position: sticky;
+        top: 0;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.active-header {
+    color: #2f363f!important;
+    border-bottom: 1px solid #2f363f;
+    margin-bottom: -19px;
+    padding-bottom: 17px;
+}
