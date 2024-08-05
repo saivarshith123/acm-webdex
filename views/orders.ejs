@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="https://developers.kite.trade/static/images/app-icons/12hpqpbfwnxyvud8.png"
+        type="image/x-icon" />
+
+    <!--style sheet-->
+    <link rel="stylesheet" href="/common.css" />
+    <link rel="stylesheet" href="/orders.css" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <title>Orders</title>
+</head>
+
+<body>
+    <div class="root">
+        <!-- header -->
+        <%- include("../components/header", isUserLoggedIn) %>
+            <!-- header ends -->
+
+            <!-- App container -->
+            <div class="app-container">
+                <div class="main">
+                    <div class="title">
+                        <h2>Your Orders</h2>
+                        <p>Orders for smallcases, sorted chronologically</p>
+                    </div>
+
+                    <div class="orders">
+                        <% data = data.reverse() %>
+                        <% date = date.reverse() %>  
+                        <% data.forEach((el, i) => { %>
+                            <div class="order">
+                                <div class="top-section">
+                                    <div class="top-left"><img
+                                            src="<%= el.img %>">
+                                        <div class="about-info">
+                                            <p><%= el.title %></p>
+                                            <p><%= date[i] %></p>
+                                        </div>
+                                    </div>
+                                    <div class="top-right">Track Performance</div>
+                                </div>
+                                <div class="stats">
+                                    <div class="stat-1">
+                                        <p>Batch</p>
+                                        <p>Invest</p>
+                                    </div>
+                                    <div class="stat-2">
+                                        <p>Placed on</p>
+                                        <p><%= date[i] %></p>
+                                    </div>
+                                    <div class="stat-3">
+                                        <p>Status</p>
+                                        <p>Filled</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }) %> 
+                    </div>
+                </div>
+
+                <!-- footer -->
+                <%- include("../components/footer") %>
+                    <!-- footer ends -->
+            </div>
+    </div>
+    <script src="/common.js"></script>
+</body>
+
+</html>

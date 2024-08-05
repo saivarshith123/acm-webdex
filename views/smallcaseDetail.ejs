@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://developers.kite.trade/static/images/app-icons/12hpqpbfwnxyvud8.png"
+        type="image/x-icon" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/common.css" />
+    <link rel="stylesheet" href="/smallcaseDetail.css" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <title>Invest Now</title>
+</head>
+
+<body>
+    <div class="root">
+        <!-- header -->
+        <%- include("../components/header", isUserLoggedIn) %>
+            <!-- header ends -->
+            
+            <!-- App container -->
+            <div class="app-container">
+
+                <!-- main div -->
+                <div class="main">
+                    <% data.forEach(el=> { %>
+                        <div class="gray-box">
+                            <div class="top-detail-box">
+                                <div class="product-main-info"><img src="<%= el.img %> ">
+                                    <div class="about-info">
+                                        <p class="product-name">
+                                            <%= el.title %>
+                                        </p>
+                                        <p class="product-short-info">
+                                            <%= el.shortDescription %>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="stats">
+                                    <div class="stat-1">
+                                        <p>Min Amount</p>
+                                        <p>&#x20B9 <%= el.minAmount %>
+                                        </p>
+                                    </div>
+                                    <div class="stat-2">
+                                        <p>
+                                            <%= el.cagYear %>Y CAGR
+                                        </p>
+                                        <p style="color: rgb(25, 175, 85);">
+                                            <%= el.cagRate %>%
+                                        </p>
+                                    </div>
+                                    <div class="stat-3">
+                                        <p>
+                                            <%= el.volatility %> Volatility
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="overview">Overview</p>
+                        <div class="bottom-detail-box">
+                            <div class="long-description">
+                                <div class="left-desc">
+                                    <p class="question"><%= el.ques_title %></p>
+                                    <p><%= el.discription_p1 %></p>
+                                    <ul>
+                                        <% el.discription.forEach(item=> { %>
+                                            <li><%= item %></li>
+                                            <% }) %>
+                                    </ul>
+                                    <p><%= el.discription_p2 %></p>
+                                </div>
+                                <div class="right-desc">
+                                    <div class="vertical-line"></div>
+                                    <div class="right-content">
+                                        <div class="modal">
+                                            <h3 onclick="renderMethodologyModal()">Methodology</h3>
+                                            <p>Know how this smallcase was created</p>
+                                        </div>
+                                        <div class="modal">
+                                            <a target="_blank" href="<%= el.factSheet  %> ">Factsheet</a>
+                                            <p>Download key points about this smallcase</p>
+                                        </div>
+                                        <p>Created by Windmill Capital</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="payment-section"><button onclick="renderModal(<%= JSON.stringify(el) %>)"
+                                    class="payment-section-btn">Invest Now</button></div>
+                            <div class="payment-section-responsive">
+                                <div class="payment-info">
+                                    <p>Minimum Investment Amount</p>
+                                    <p>&#x20B9 <%= el.minAmount %>
+                                    </p>
+                                </div><button onclick="renderModal(<%= JSON.stringify(el) %>)"
+                                    class="payment-section-btn">Invest Now</button>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+                <!-- main div ends -->
+
+                <!-- footer -->
+                <%- include("../components/footer") %>
+                <!-- footer ends -->
+            </div>
+    </div>
+
+    <script src="/smallcaseDetail.js"></script>
+    <script src="/common.js"></script>
+</body>
+
+</html>
